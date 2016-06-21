@@ -1,18 +1,26 @@
-// index.js - UI server and API interface
+// Cisco Shipped sample three-tier application UI server
+// Change the assignments below if you change the API server service name
+// or port number from the default
+var API_SERVICE_NAME = "vote-api"
+var API_PORT = 8888
+var UI_PORT = 3000
+
+API_SERVICE_NAME = API_SERVICE_NAME.replace(/-/g, "_")
+
 var express = require('express');
 var http = require('http')
 var serveStatic = require("serve-static");
 
 var counter = 0
 
-var app = express(); 
-app.use(serveStatic(__dirname + "/.")); 
+var app = express()
+app.use(serveStatic(__dirname + "/."))
 
 // Endpoint 'count' - retrieve current count and store locally
 app.get('/count', function (req, res) {
 	var options = {
-		host: "pgapi",
-		port: 8888,
+		host: API_SERVICE_NAME,
+		port: API_PORT,
 		path: "/data"
 	}
 	http.get(options, function(getres) {	
@@ -39,8 +47,8 @@ app.post('/reset', function (req, res) {
 	res.json({Count: counter})
 });
 
-app.listen(3000);
-console.log('Server running on http://0.0.0.0:3000/');
+app.listen(UI_PORT);
+console.log('Shipped three-tier UI server listening on port ' + UI_PORT);
 
 // updateCount - Send an updated count to PostGres
 function updateCount(count) {
@@ -49,8 +57,8 @@ function updateCount(count) {
 	  Count: counter
 	})
 	var request = new http.ClientRequest({
-		hostname: "pgapi",
-		port: 8888,
+		hostname: API_SERVICE_NAME,
+		port: API_PORT,
 		path: "/data",
 		method: "POST",
 		headers: {
