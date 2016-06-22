@@ -1,4 +1,4 @@
-# vote-ui - Shipped Demo Three-Tier Application
+# vote-ui - Shipped Three-Tier Demo Application
 ![](screenshot.png)
 This repository is part of a demonstration three-tier Shipped application (UI, API, and database).  It should be deployed together with its companion repository, [CiscoCloud/vote-api](https://github.com/CiscoCloud/vote-api) and the standard Shipped Postgres datapack.  
 
