@@ -1,18 +1,9 @@
-image: node:5.0.0-slim
-git:
-  path: github.com/vjscjp/vote-ui
-script:
-  - echo "build commands"
-  - echo "no build command"
-  - echo "no test command"
-clone:
-  path: github.com/vjscjp/vote-ui
 build:
   image: node:5.0.0-slim
   commands:
-    - echo "build commands"
-    - echo "no build command"
-    - echo "no test command"
+  - echo "build commands"
+  - echo "no build command"
+  - echo "no test command"
 publish:
   docker:
     file: ./Dockerfile
@@ -23,4 +14,3 @@ publish:
     repo: $$docker_repo
     email: $$docker_user_email
     tag: $$COMMIT
-    
